@@ -43,6 +43,8 @@ function run() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const filepath = (0, path_1.join)(process.cwd(), core.getInput('path'));
+            const fields = core.getInput('field');
+            core.info(`环境文件地址-->：${filepath}${typeof fields}`);
             core.info(`环境文件地址：${filepath}`);
             const config = (_a = env.config({ path: filepath })) === null || _a === void 0 ? void 0 : _a.parsed;
             const code = Object.entries(config)
