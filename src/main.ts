@@ -10,8 +10,8 @@ async function run(): Promise<void> {
     const code = Object.entries(config!)
       .reduce((a: string[], b) => a.concat([`${b[0]}=${b[1]}`]), [])
       .join('\n')
-    core.info('环境')
-    core.setOutput('env', code)
+    core.info(`参数 >>>>\n ${code}`)
+    core.setOutput('args', code)
   } catch (error) {
     if (error instanceof Error) core.setFailed(error.message)
   }

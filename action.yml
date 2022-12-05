@@ -10,5 +10,6 @@ runs:
   using: 'node16'
   main: 'dist/index.js'
 outputs:
-  env:
-    description: Message
+  args:
+    description: args
+  
