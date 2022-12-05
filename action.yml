@@ -6,13 +6,20 @@ inputs:
     required: true
     description: 'input description here'
     default: ''
-  field:
-    required: false
-    description: 'field'
+  port:
+    required: true
+    description: 'port'
+  env:
+    required: true
+    description: 'env'
 runs:
   using: 'node16'
   main: 'dist/index.js'
 outputs:
   args:
     description: args
+  port:
+    description: 'port'
+  env:
+    description: 'env'
   

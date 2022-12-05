@@ -37,21 +37,25 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 Object.defineProperty(exports, "__esModule", ({ value: true }));
 const core = __importStar(__nccwpck_require__(186));
 const path_1 = __nccwpck_require__(622);
-const env = __importStar(__nccwpck_require__(437));
+const dotenv = __importStar(__nccwpck_require__(437));
 function run() {
     var _a;
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const filepath = (0, path_1.join)(process.cwd(), core.getInput('path'));
-            const fields = core.getInput('field');
-            core.info(`字段：${filepath}${fields}`);
+            const port = core.getInput('port');
+            const env = core.getInput('env');
+            const config = (_a = dotenv.config({ path: filepath })) === null || _a === void 0 ? void 0 : _a.parsed;
             core.info(`环境文件地址：${filepath}`);
-            const config = (_a = env.config({ path: filepath })) === null || _a === void 0 ? void 0 : _a.parsed;
+            core.info(`端口：${config[port]}`);
+            core.info(`环境:${config[env]}`);
             const code = Object.entries(config)
                 .reduce((a, b) => a.concat([`${b[0]}=${b[1]}`]), [])
                 .join('\n');
             core.info(`参数 >>>>\n ${code}`);
             core.setOutput('args', code);
+            core.setOutput('port', config[port]);
+            core.setOutput('env', config[env]);
         }
         catch (error) {
             if (error instanceof Error)
