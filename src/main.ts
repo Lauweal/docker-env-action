@@ -6,7 +6,7 @@ async function run(): Promise<void> {
   try {
     const filepath: string = join(process.cwd(), core.getInput('path'))
     const fields = core.getInput('field')
-    core.info(`环境文件地址-->：${filepath}${typeof fields}`)
+    core.info(`字段：${filepath}${fields}`)
     core.info(`环境文件地址：${filepath}`)
     const config = env.config({path: filepath})?.parsed
     const code = Object.entries(config!)
